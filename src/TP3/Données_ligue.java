@@ -5,7 +5,7 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Données_ligue {
-    public static String[] sauvegarde_info_ligue;
+    public static String[] sauvegarde_info_Classement;
 
     public Données_ligue(String Nom_fichier_ligue){
 
@@ -17,9 +17,9 @@ public class Données_ligue {
             while(liseur_fichier.hasNextLine()){
                 info += liseur_fichier.nextLine() + "\n";
             }
-            sauvegarde_info_ligue = info.split("\n");
-            for(int i = 0; i < sauvegarde_info_ligue.length; i++){
-                System.out.println(sauvegarde_info_ligue[i]);
+            sauvegarde_info_Classement = info.split("\n");
+            for(int i = 0; i < sauvegarde_info_Classement.length; i++){
+                System.out.println(sauvegarde_info_Classement[i]);
             }
 
             liseur_fichier.close();
