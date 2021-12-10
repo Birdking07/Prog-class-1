@@ -1,17 +1,12 @@
 package TP3;
 
-import java.io.File;
-
-import java.util.Scanner;
-
 public class Classement {
     public static String[] sauvegarde_info_classement;
     public static String titre_ligue = "";
 
 
 
-    public Classement(String[] infoequipe , String[] infopoints ,
-                      int[] infoMoyenne , String infoLargeurFormat){
+    public  Classement(String[] infopoints, int[] infoMoyenne, String infolargeurFormat, String[] infoequipe) {
         final int lignes_info_fichier = 6;
 
         int victoires = 0;
@@ -23,25 +18,24 @@ public class Classement {
         infoequipe = new String[nombreequipes];
         infopoints = new String[nombreequipes];
         infoMoyenne = new int[nombreequipes];
+        int chiffresmoyenne = 0;
 
-        for (int i = 0 ; i < nombreequipes; i++){
+
+        for (int i = 0; i < nombreequipes; i++) {
             infoequipe[i] = sauvegarde_info_classement[6 + i].split(";")[0];
-            infoequipe[i].trim();
         }
 
-        for (int a = 0 ; a < nombreequipes; a++){
+        for (int a = 0; a < nombreequipes; a++) {
 
-            for (int d = 1 ; d <= 5 ; d++){
+            for (int d = 1; d <= 5; d++) {
                 infopoints[a] += sauvegarde_info_classement[7 + a].split(";")[a + d];
+                System.out.println(infopoints[a]);
             }
         }
-
-
-
-
-        infoLargeurFormat = sauvegarde_info_classement[2];
+        infolargeurFormat = sauvegarde_info_classement[2];
+        int largeurFormat;
+        largeurFormat = Integer.parseInt(infolargeurFormat);
 
     }
-
 }
 
