@@ -2,7 +2,6 @@ package TP3;
 
 import java.io.File;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class Ligue {
     public String[] Stockage_lignes;
@@ -21,12 +20,6 @@ public class Ligue {
        String[] Lignes = Fichier_classe();
 
 
-
-
-        for (int i = 0 ; i < nombreEquipes ; i++){
-            Stockage_lignes[i] = "";
-            Stockage_lignes[i] += Lignes[i];
-        }
         Infos_Table_Final_1(Lignes);
 
     }
@@ -58,13 +51,13 @@ public class Ligue {
         return null;
     }
 
-    private int[] PlusieursNombres(String PointMoyenne){
-        String[] temp = PointMoyenne.split(";");
-        int[] returnValue = new int[temp.length];
-        for(int i = 0; i < returnValue.length; i++){
-            returnValue[i] = Integer.parseInt(temp[i]);
+    private int[] PlusieursNombres(String PointValeurs){
+        String[] stockage_temp = PointValeurs.split(";");
+        int[] returnValeur = new int[stockage_temp.length];
+        for(int i = 0; i < returnValeur.length; i++){
+            returnValeur[i] = Integer.parseInt(stockage_temp[i]);
         }
-        return returnValue;
+        return returnValeur;
     }
 }
 
