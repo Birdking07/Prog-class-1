@@ -4,23 +4,49 @@ package TP3;
 
 //My bad
 public class Equipe {
-    public String resultat;
-    public int victoires;
-    public int numeroMatch;
-    public int defaites;
-    public int egalite;
-    public int pour;
-    public int contre;
+    // le nombre de victoires
+    private int victoires;
+
+    //le nombre de match
+    private int numeroMatch;
+
+    // sert au calcul du nombre de match et il est utilisé avec numeromatch
+    private int nombreMatch;
+
+    //le nombre de défaites
+    private int defaites;
+
+    //le nombre d'égalité
+    private int egalite;
+
+    //le nombre de matchs identifiés comme étant pour
+    private int pour;
+
+    //le nombre de matchs identifiés comme étant contre
+    private int contre;
+
+    //initialisation du string qui va contenir le nom des équipes
     public String nomEquipe = "";
-    public int nombreMatch;
-    public int Diff;
-    public int moy;
-    public int total;
-    public int[] valeursMoyenne;
-    public int[] valeursPoints;
+
+    //la différence
+    private int Diff;
+
+    //la moyenne
+    private int moy;
+
+    // le total
+    private int total;
+
+    //les règles imposé sur la moyenne dans le fichier
+    private int[] valeursMoyenne;
+
+    //les règles imposé sur le pointage dans le fichier
+    private int[] valeursPoints;
+
+    //espacement utilisé lorsqu'on appelle la classe Formateur
     public int espacement;
 
-
+    // Appel de chaque methode qui sert à calculer les valeurs pour la table finale
     public Equipe(int[] valeursPoints, int[] valeursMoyenne, int espacement, String info) {
         this.valeursPoints = valeursPoints;
         this.valeursMoyenne = valeursMoyenne;
@@ -33,36 +59,38 @@ public class Equipe {
 
     }
 
-    public String getNomEquipe(){
-        return nomEquipe;
-    }
 
+    // Passe les valeurs par le Formateur et ensuite vont revenir à la méthode toString dans ligue
+    // Afin d'avoir toutes nos valeurs pour la table finale écrite dans main
     public String toString(){
         Formateur formateur = new Formateur(espacement);
-        String unBonTP = nomEquipe;
-        unBonTP += formateur.genererInt(numeroMatch);
-        unBonTP += formateur.genererInt(victoires);
-        unBonTP += formateur.genererInt(defaites);
-        unBonTP += formateur.genererInt(egalite);
-        unBonTP += formateur.genererInt(pour);
-        unBonTP += formateur.genererInt(contre);
-        unBonTP += formateur.genererInt(Diff);
-        unBonTP += formateur.genererInt(moy);
-        unBonTP += formateur.genererInt(total);
+        String Calculs_Equipe = nomEquipe;
+        Calculs_Equipe += formateur.genererInt(numeroMatch);
+        Calculs_Equipe += formateur.genererInt(victoires);
+        Calculs_Equipe += formateur.genererInt(defaites);
+        Calculs_Equipe += formateur.genererInt(egalite);
+        Calculs_Equipe += formateur.genererInt(pour);
+        Calculs_Equipe += formateur.genererInt(contre);
+        Calculs_Equipe += formateur.genererInt(Diff);
+        Calculs_Equipe += formateur.genererInt(moy);
+        Calculs_Equipe += formateur.genererInt(total);
 
-        return unBonTP;
+        return Calculs_Equipe;
     }
+
+
+    //Le nombre de matchs
     private int getMatch(int nombreMatch , int victoires ,int defaites , int egalite){
-        nombreMatch = victoires + defaites + egalite; //Le nombre de matchs
+        nombreMatch = victoires + defaites + egalite;
         return nombreMatch;
     }
-
+    //La différence de Pour et Contre
     private int setDiff(int Diff , int pour , int contre){
-        Diff = pour - contre; //La différence de Pour et Contre (skill issue)
+        Diff = pour - contre;
         return Diff;
     }
 
-    //Cette méthode retourne une moyenne pondérée des trois premiers paramètres par rapport aux règles imposées par le quatrième
+    //Cette méthode retourne une moyenne des trois premiers chiffres par rapport aux règles imposées par le quatrième
     private int calculMoyenne(int victores, int egalite, int defaites, int[] valeurs){
         return victoires * valeurs[0] + defaites * valeurs[1] + egalite * valeurs[2];
     }
@@ -73,12 +101,13 @@ public class Equipe {
         return moy;
     }
 
+    // retourne le total des points vers trouverpositionduplusgrand dans ligue
     public int getPoints(){
         return total;
     }
 
 
-
+    // calcul du total des points
     private int Calcul_total(int[] valeursPoints , int victoires,int egalite,int defaites ){
         total = calculMoyenne(victoires, egalite, defaites, valeursPoints); //Calcul des points (voir méthode)
         return total;

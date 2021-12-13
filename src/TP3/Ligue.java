@@ -44,7 +44,6 @@ public class Ligue {
         //envoi de getInfos vers setInfos
         setInfos(getInfos);
 
-        //trierEquipes();
 
 
     }
@@ -72,6 +71,7 @@ public class Ligue {
         for(int i = 0; i < nombreEquipes; i++){
             equipes[i] = new Equipe(valeursPoints, valeursMoyenne, espacement, Lignes[i + 6]);
         }
+        // Appel de la méthode pour trier les equipes
         trierEquipes();
     }
 
@@ -114,37 +114,51 @@ public class Ligue {
         return returnValeur;
     }
 
-    // Touch this to change output
+    // Envoie des résultats de ligue et équipe vers main
     public String toString(){
+        // variable pour l'espacement du titre ainsi que le nombre de _ affiché
         int espacementTitre = espacement * 11;
+
+        // Initialisation des variables forTitle et forReste dans la classe Formatteur
+        // espacement = distance entre chaque partie de l'en tête
+        // espacementTitre sert à centrer le titre du table
         Formateur forTitle = new Formateur(espacementTitre);
         Formateur forReste = new Formateur(espacement);
+
+        // Ajout du titre dans le table
         String head = forTitle.genererString(titre) + "\n";
+
+        // Ajout des colonnes
         for(int i = 0; i < colonnes.length; i++){
             head += forReste.genererString(colonnes[i]);
         }
+        // Espacement pour les ___ à suivre
         head += "\n";
+
+        // Le nombre de __ en utilisation ajouté au string head
         for(int i = 0 ; i < espacementTitre ; i++){
             head +=  "_";
         }
+        // Appel des equipes et de toutes leurs infos
         for(int i = 0 ; i < nombreEquipes ; i++){
             head += "\n";
             head += equipes[i];
         }
-
+        // retour des données vers le main.
         return head;
 
 
     }
 
+    // Sorter les equipes par leur résultat
     private void trierEquipes(){
         // en faire une copie
         Equipe[] copie = new Equipe[equipes.length];
 
         for(int i = 0; i < equipes.length; i++) copie[i] = equipes[i];
-
-
         int j = 0; // la position de la prochaine équipe
+
+
         for(int i = 0; i < equipes.length; i++) {
             int pos = trouverPositionDuPlusGrand(copie);
             equipes[j] = copie[pos];
@@ -154,6 +168,7 @@ public class Ligue {
         }
     }
 
+    // ce methode trouve la position de l'équipe avec le pointage le plus grand en fonctionnant avec trierEquipes
     private int trouverPositionDuPlusGrand(Equipe[] equipe){
         int pos = 0;
 
