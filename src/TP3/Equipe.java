@@ -18,16 +18,18 @@ public class Equipe {
     public int total;
     public int[] valeursMoyenne;
     public int[] valeursPoints;
+    public int espacement;
 
 
     public Equipe(int[] valeursPoints, int[] valeursMoyenne, int espacement, String info) {
         this.valeursPoints = valeursPoints;
         this.valeursMoyenne = valeursMoyenne;
         Match_set(info);
-        int getDifferance = setDiff(Diff , pour , contre);
+        Diff = setDiff(Diff , pour , contre);
         numeroMatch = getMatch(nombreMatch , victoires , defaites , egalite);
-        getMoy(victoires , egalite , defaites , valeursMoyenne , moy ,numeroMatch);
+        moy = getMoy(victoires , egalite , defaites , valeursMoyenne , moy ,numeroMatch);
         Calcul_total(valeursPoints , victoires, egalite, defaites );
+        this.espacement = espacement;
 
     }
 
@@ -35,7 +37,21 @@ public class Equipe {
         return nomEquipe;
     }
 
+    public String toString(){
+        Formateur formateur = new Formateur(espacement);
+        String unBonTP = nomEquipe;
+        unBonTP += formateur.genererInt(numeroMatch);
+        unBonTP += formateur.genererInt(victoires);
+        unBonTP += formateur.genererInt(defaites);
+        unBonTP += formateur.genererInt(egalite);
+        unBonTP += formateur.genererInt(pour);
+        unBonTP += formateur.genererInt(contre);
+        unBonTP += formateur.genererInt(Diff);
+        unBonTP += formateur.genererInt(moy);
+        unBonTP += formateur.genererInt(total);
 
+        return unBonTP;
+    }
     private int getMatch(int nombreMatch , int victoires ,int defaites , int egalite){
         nombreMatch = victoires + defaites + egalite; //Le nombre de matchs
         return nombreMatch;

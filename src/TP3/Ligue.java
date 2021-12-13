@@ -114,15 +114,23 @@ public class Ligue {
         return returnValeur;
     }
 
-    //
+    // Touch this to change output
     public String toString(){
-        Formateur forTitle = new Formateur(espacement * 10);
+        int espacementTitre = espacement * 11;
+        Formateur forTitle = new Formateur(espacementTitre);
         Formateur forReste = new Formateur(espacement);
         String head = forTitle.genererString(titre) + "\n";
         for(int i = 0; i < colonnes.length; i++){
             head += forReste.genererString(colonnes[i]);
         }
-
+        head += "\n";
+        for(int i = 0 ; i < espacementTitre ; i++){
+            head +=  "_";
+        }
+        for(int i = 0 ; i < nombreEquipes ; i++){
+            head += "\n";
+            head += equipes[i];
+        }
 
         return head;
 
